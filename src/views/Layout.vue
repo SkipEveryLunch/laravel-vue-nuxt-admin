@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div>
-      <Nav :user="user"/>
+      <Nav/>
       <div class="container-fluid">
         <div class="row">
           <Menu/>
@@ -23,15 +23,10 @@ import {User} from '@/models/User'
 export default {
   name:'Layout',
   components:{Nav,Menu},
-  data(){
-    return {
-      user:new User()
-    }
-  },
   async mounted(){
     try{
       const {data} = await axios.get('user');
-      this.user = data;      
+      this.$store.dispatch("setUser",data)     
     }catch(e){
       this.$router.push("/login");
     }
