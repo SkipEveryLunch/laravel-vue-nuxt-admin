@@ -3,13 +3,18 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import Layout from '@/views/Layout.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
+import Users from '@/views/Users.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '',
-    component: Layout
+    component: Layout,
+    children:[
+      {path:'/',redirect:'/users'},
+      {path:'/users',component:Users}
+    ]
   },
   {
     path: '/login',

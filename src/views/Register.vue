@@ -34,29 +34,28 @@
     </form>
   </main>
 </template>
-<script lang="ts">
-import axios from 'axios'
+<script>
+import axios from "axios";
 export default {
   name: "Register",
-  data(){
-    return{
-      first_name: "",
-      last_name: "",
-      email: "",
-      password: "",
-      password_confirm: "",
+  data() {
+    return {
+      first_name: '',
+      last_name: '',
+      email: '',
+      password: '',
+      password_confirm: '',
     }
   },
-  methods:{
-    async submit(){
-      const data = {
-        first_name : this.first_name,
-        last_name : this.last_name,
-        email : this.email,
-        password : this.password,
-        password_confirm : this.password_confirm
-      };
-      const res = await axios.post("register",data);
+  methods: {
+    async submit() {
+      await axios.post('register', {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        password: this.password,
+        password_confirm: this.password_confirm,
+      });
       await this.$router.push('/login');
     }
   }
